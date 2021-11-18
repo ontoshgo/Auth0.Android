@@ -16,8 +16,8 @@ import com.auth0.android.request.internal.GsonProvider
 import com.auth0.android.request.internal.RequestFactory
 import com.auth0.android.result.UserIdentity
 import com.auth0.android.result.UserProfile
+import com.auth0.android.util.toHttpUrl
 import com.google.gson.Gson
-import okhttp3.HttpUrl.Companion.toHttpUrl
 import java.io.IOException
 import java.io.Reader
 

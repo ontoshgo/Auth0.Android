@@ -89,7 +89,7 @@ android {
 }
 
 ext {
-    okhttpVersion = '4.9.0'
+    okhttpVersion = '3.12.2'
     powermockVersion = '2.0.9'
 }
 

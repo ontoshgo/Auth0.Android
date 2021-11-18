@@ -5,7 +5,6 @@ import com.auth0.android.request.DefaultClient
 import com.auth0.android.request.NetworkingClient
 import com.auth0.android.util.Auth0UserAgent
 import okhttp3.HttpUrl
-import okhttp3.HttpUrl.Companion.toHttpUrlOrNull
 import java.util.*
 
 /**
@@ -99,7 +98,7 @@ public open class Auth0 @JvmOverloads constructor(
         require(!normalizedUrl.startsWith("http://")) { "Invalid domain url: '$url'. Only HTTPS domain URLs are supported. If no scheme is passed, HTTPS will be used." }
         val safeUrl =
             if (normalizedUrl.startsWith("https://")) normalizedUrl else "https://$normalizedUrl"
-        return safeUrl.toHttpUrlOrNull()
+        return HttpUrl.parse(safeUrl)
     }
 
     private companion object {

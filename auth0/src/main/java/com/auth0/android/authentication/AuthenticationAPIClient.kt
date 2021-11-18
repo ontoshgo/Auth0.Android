@@ -11,8 +11,8 @@ import com.auth0.android.result.Challenge
 import com.auth0.android.result.Credentials
 import com.auth0.android.result.DatabaseUser
 import com.auth0.android.result.UserProfile
+import com.auth0.android.util.toHttpUrl
 import com.google.gson.Gson
-import okhttp3.HttpUrl.Companion.toHttpUrl
 import java.io.IOException
 import java.io.Reader
 import java.security.PublicKey

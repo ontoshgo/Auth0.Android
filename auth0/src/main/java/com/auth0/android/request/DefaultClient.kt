@@ -2,13 +2,13 @@ package com.auth0.android.request
 
 import androidx.annotation.VisibleForTesting
 import com.auth0.android.request.internal.GsonProvider
+import com.auth0.android.util.toHeaders
+import com.auth0.android.util.toHttpUrl
+import com.auth0.android.util.toMediaType
+import com.auth0.android.util.toRequestBody
 import com.google.gson.Gson
 import okhttp3.*
-import okhttp3.Headers.Companion.toHeaders
-import okhttp3.HttpUrl.Companion.toHttpUrl
-import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.Request
-import okhttp3.RequestBody.Companion.toRequestBody
 import okhttp3.logging.HttpLoggingInterceptor
 import java.io.IOException
 import java.util.concurrent.TimeUnit
@@ -41,7 +41,7 @@ public class DefaultClient @VisibleForTesting(otherwise = VisibleForTesting.PRIV
         readTimeout: Int = DEFAULT_TIMEOUT_SECONDS,
         defaultHeaders: Map<String, String> = mapOf(),
         enableLogging: Boolean = false
-    ) : this(connectTimeout,  readTimeout,  defaultHeaders, enableLogging, null, null)
+    ) : this(connectTimeout, readTimeout, defaultHeaders, enableLogging, null, null)
 
     //TODO: receive this via internal constructor parameters
     private val gson: Gson = GsonProvider.gson
@@ -54,9 +54,9 @@ public class DefaultClient @VisibleForTesting(otherwise = VisibleForTesting.PRIV
         val response = prepareCall(url.toHttpUrl(), options).execute()
 
         return ServerResponse(
-            response.code,
-            response.body!!.byteStream(),
-            response.headers.toMultimap()
+            response.code(),
+            response.body()!!.byteStream(),
+            response.headers().toMultimap()
         )
     }
 
